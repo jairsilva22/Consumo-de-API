@@ -1,0 +1,11 @@
+En el archivo scripts.js que puedes encontrar en la ruta js/scripts.js
+En el area de la petición post se modifica la URL.
+Por la que obtengan una vez montada la aplicacion en el servidor.
+
+
+
+ const url = 'http://192.168.1.235:8574/sntssrv.dll/api/rest/tsm/calcula_RentaVitalicia';
+ // se va modificar esa URL por la que tengan en el servidor 
+
+  axios.post(url, data)
+    .then(function (response) {

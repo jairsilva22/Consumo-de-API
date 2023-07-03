@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html lang="Es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="import" href="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js">
+    <link rel="shortcut icon" href="assets/icon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqPrint/0.3/jqprint.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+    <script src="https://printjs-4de6.kxcdn.com/print.min.css"></script>
+    <style>
+        .resultados-ocultos {
+            display: none;
+            /* Oculta todos los resultados inicialmente */
+        }
+
+        .resultado #resultado1 {
+            display: block;
+        }
+    </style>
+
+    <title>Resultados</title>
+</head>
+
+<body>
+
+    <header class="shadow-md md:sticky md:top-0  bg-gray-100">
+        <!--nav-->
+        <!-- <nav class="bg-green-600 	shadow-lg">
+          <div class="header-titulo bg-green-600 mx-0">
+            <h3>IMSS</h3>
+          </div>
+        </nav> -->
+        <div
+            class="backdrop-filter backdrop-blur-xl bg-lime-100	border-b-2 border-green-700		  md:flex md:justify-center md:blur:-sm xl:justify-start xl:pl-96 xl:h-96 2xl:justify-center 2xl:p-0">
+            <div class="md:w-1/2 lg:w-6/12 xl:w-10/12 2xl:w-6/12">
+                <div class="flex justify-center content-start md:justify-center xl:justify-start">
+                    <div class="md:w-2/6 lg:w-4/6	xl:w-2/6">
+                        <img class="logo h-auto lg:h-80 xl:h-96  m-0" src="assets/logo-sntte.svg"
+                            alt="logo de la compañia">
+                    </div>
+                    <div class=" w-64 flex md:w-4/6	lg:w-5/6 2xl:w-3/6 lg:ml-11 xl:w-7/12">
+                        <h1 class="flex items-center font-bold text-gray-600	h-auto text-4xl lg:text-6xl xl:text-7xl">
+                            Proyección
+                            aproximada de tu jubilación
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container" id="container">
+        <div
+            class="w-3/4  grid justify-items-center border-2 border-yellow-200 p-6 mt-10 mb-10 w-10/12 sm:w-3/4 mx-auto bg-yellow-100 shadow-md ">
+
+            <!--Botones de sección-->
+            <div class="w-full flex" style="justify-content: start;">
+                <button id="button-antecedentes"
+                    class="shadow-md section-active  transition ease-in-out delay-150  bg-yellow-300 hover:bg-yellow-100 text-gray-700 rounded-2xl px-5 text-2xl leading-normal">Antecedentes</button>
+                <button id="button-normativa"
+                    class="shadow-md section-inactive  bg-yellow-200 hover:bg-yellow-100 transition ease-in-out delay-150  text-gray-700 rounded-2xl px-5 mx-5 text-2xl leading-normal">Resumen
+                    de la normatividad</button>
+            </div>
+            <!--End of Botones de sección-->
+
+            <!--Antecedentes-->
+            <div id="text-antecedentes" class="h-auto mt-5  text-section section-active block">
+                <p class="text-justify text-5lg text-gray-600 ">
+                    El esquema de jubilaciones y pensiones establece que los trabajadores con fecha de ingreso a partir
+                    de 2008
+                    (Nueva Generación) tienen derecho a la cuenta individual contemplada en la Ley del IMSS y,
+                    adicionalmente, a
+                    la cuenta individual complementaria de acuerdo con el “Convenio Adicional para las Jubilaciones y
+                    Pensiones
+                    de los Trabajadores de Base de Nuevo Ingreso”. Dado lo anterior, estos trabajadores tendrán derecho
+                    a la
+                    suma de dos rentas vitalicias (pensiones) al momento de su jubilación.
+                </p>
+            </div>
+            <!--End of antecedentes-->
+
+            <!--Resumen de la normatividad-->
+            <div id="text-normativa" class="h-auto mt-5 section-hidden hidden">
+                <p class="  text-justify text-5lg text-gray-600">
+                    El saldo de las cuentas individuales se calcula conforme a la cláusula tercera del “Convenio
+                    Adicional para
+                    las Jubilaciones y Pensiones de los Trabajadores de Base de Nuevo Ingreso”, el cual incluye:
+                    <br /> <br />• Las cuotas obrero patronales del Seguro de Retiro, Cesantía en Edad Avanzada y Vejez
+                    establecidas en la Ley del Seguro Social;
+                    <br />• Las cuotas del ramo de Cesantía en Edad Avanzada y Vejez establecidas en la Ley del Seguro
+                    Social a
+                    cargo del trabajador;
+                    <br />• Las aportaciones del Estado por concepto de cuotas del Seguro de Retiro, Cesantía en Edad
+                    Avanzada y
+                    Vejez establecidas en la Ley del Seguro Social;
+                    <br />• Las aportaciones del Estado por Cuota Social al Seguro de Retiro, Cesantía en Edad Avanzada
+                    y Vejez
+                    establecida en la Ley del Seguro Social;
+                    <br />• Las aportaciones del trabajador del 7% al 15% del salario base señalado en el artículo 5 del
+                    RJP y
+                    del Fondo de Ahorro que anualmente paga el “IMSS” (El 7% inicia en 2008 y se incrementará un 1% cada
+                    año
+                    hasta llegar al 15%);
+                    <br />• Los fondos de la subcuenta de vivienda que no hubiesen sido aplicados al otorgamiento de un
+                    crédito
+                    cuando así lo soliciten el trabajador o sus beneficiarios;
+                    <br />• Los rendimientos que produzcan las inversiones y aportaciones de las cuentas individuales.
+                </p>
+            </div>
+            <!--End Resumen de la normatividad-->
+
+        </div>
+
+
+
+        <div class="info-resultados-totales">
+            <hr>
+            <h3>Resultados generales de la proyección de tu jubilación:</h3>
+            <p>La siguiente tabla muestra cuánto representan las pensiones proyectadas como porcentaje del último
+                salario de cotización, mismo que se encuentra separado en:
+
+                <br> • Pensión proyectada del IMSS.
+                <br> • Pensión proyectada del Convenio Laboral SNTSS.
+                <br> • Pensión proyectada Total, la cual resulta de la suma de las dos anteriores.
+            </p>
+        </div>
+        <div class="total-resultados   place-content-center">
+
+            <table id="resultados-generales">
+                <thead>
+                    <!-- <caption>Pesos de <span class="anio-actual"></span></caption> -->
+                    <tr>
+                        <th>Edad de Pensión</th>
+                        <th>Pensión del IMSS como porcentaje del último salario de cotización</th>
+                        <th>Pensión del Convenio Laboral SNTSS como porcentaje del último salario de cotización</th>
+                        <th>Pensión Total (IMSS + Convenio) como porcentaje del último salario de cotización</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+
+        <div class="info-resultados-totales">
+            <hr>
+            <h3>Resultados detallados de la proyección de tu jubilación:</h3>
+            <p>En el siguiente apartado podrás encontrar información adicional utilizada en el cálculo de cada pensión.
+                Para ello selecciona uno de los siguientes botones: </p>
+        </div>
+        <div class="nav-bar">
+            <button class="btn-ocultar boton-nav boton-pintado" onclick="mostrarResultado('resultado1')">TOTAL </button>
+            <button class="btn-ocultar boton-nav" onclick="mostrarResultado('resultado2')">IMSS </button>
+            <button class="btn-ocultar boton-nav" onclick="mostrarResultado('resultado3')">CONVENIO LABORAL SNTSS (15%)
+            </button>
+        </div>
+        <div class="caption">
+            <caption>Pesos de <span id="anio-actual"></span></caption>
+
+        </div>
+       
+        <div id="resultado1" class="resultado pdf ">
+            <table id="resultados-t">
+                <thead>
+                  
+                    <tr>
+                        <th>Año</th>
+                        <th>Edad</th>
+                        <!-- <th>Antiguedad</th> -->
+                        <th>Salario de Cotización</th>
+                        <th>Saldo Total (Cuenta Individual + Cuenta Individual Complementaria)</th>
+                        <th>Pensión del IMSS</th>
+                        <th>Pensión del Convenio Laboral</th>
+                        <!-- <th>Pension Garantizada IMSS</th> -->
+                        <th>Pensión Total (IMSS + Convenio)</th>
+                        <th>Pensión Total como porcentaje del último salario de cotización</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div id="resultado2" class="resultado pdf resultados-ocultos">
+            <table id="resultados-imss">
+                <thead>
+                    <!-- <caption>Pesos de <span class="anio-actual"></span></caption> -->
+                    <tr>
+                        <th>Año</th>
+                        <th>Edad</th>
+                        <!-- <th>Antiguedad</th> -->
+                        <th>Salario de Cotización</th>
+                        <th>Saldo de la Cuenta Individual</th>
+                        <th>Renta Vitalicia IMSS</th>
+                        <th>Pensión Garantizada IMSS</th>
+                        <th>Pensión del IMSS (máximo entre Renta Vitalicia y Pensión Garantizada)</th>
+                        <th>Pensión del IMSS como porcentaje del último salario de cotización</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="resultado3" class="resultado pdf resultados-ocultos">
+            <table id="resultados-rjp">
+                <thead>
+                    <!-- <caption>Pesos de <span id="anio-actual"></span></caption> -->
+                    <tr>
+                        <th>Año</th>
+                        <th>Edad</th>
+                        <!-- <th>Antiguedad</th> -->
+                        <th>Salario de Cotización</th>
+                        <th>Saldo de la Cuenta Individual Complementaria</th>
+                        <th>Pensión del Convenio Laboral SNTSS</th>
+
+                        <th>Pensión del Convenio Laboral SNTSS como porcentaje del último salario de cotización</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="boton">
+            <button class="btn-ocultar" onclick="generarArchivoImpresion()">Descargar proyección ↓</button>
+        </div>
+
+        <!-- <button onclick="imprimirPagina() ">Descargar</button> -->
+    </div>
+
+    <script>
+
+
+
+
+        window.addEventListener('message', function (event) {
+            var data = event.data; // Datos recibidos desde la página anterior
+            var jsonResultados = JSON.stringify(data);
+            var startIndex = jsonResultados.indexOf("[{");
+            var endIndex = jsonResultados.lastIndexOf("}]") + 2;
+
+            // Extrae la porción del JSON entre las llaves
+            var cleanedJSON = jsonResultados.substring(startIndex, endIndex);
+
+
+
+            var resultados = JSON.parse(cleanedJSON);
+            console.log("resultados", resultados);
+            var contador = 0;
+            var tabala_gral = document.getElementById("resultados-generales");
+            for (var clave in resultados) {
+                contador = contador + 1;
+                if (resultados.hasOwnProperty(clave)) {
+                    var resultado = resultados[clave];
+                    var fila = document.createElement('tr');
+
+                    if (contador < 6) {
+                        var celdaEdad = document.createElement('td');
+                        celdaEdad.textContent = resultado.Edad;
+
+
+                        fila.appendChild(celdaEdad);
+
+                        var celdaPjeImss = document.createElement('td');
+                        celdaPjeImss.textContent = resultado.pjeIMSS;
+                        fila.appendChild(celdaPjeImss);
+
+                        var celdaEmail = document.createElement('td');
+                        celdaEmail.textContent = resultado.pjeRJP;
+                        fila.appendChild(celdaEmail);
+
+
+                        var celdaPje = document.createElement('td');
+                        celdaPje.textContent = resultado.pjeTotal;
+                        fila.appendChild(celdaPje);
+
+                        tabala_gral.appendChild(fila);
+                    }
+
+
+
+                }
+            }
+
+            var tabla = document.getElementById('resultados-t');
+            for (var clave in resultados) {
+
+                if (resultados.hasOwnProperty(clave)) {
+                    var resultado = resultados[clave];
+                    var fila = document.createElement('tr');
+
+                    var celdaAnio = document.createElement('td');
+                    celdaAnio.textContent = resultado.Anio;
+                    fila.appendChild(celdaAnio);
+
+
+                    var celdaEdad = document.createElement('td');
+                    celdaEdad.textContent = resultado.Edad;
+                    fila.appendChild(celdaEdad);
+
+
+                    var celdaSueldo = document.createElement('td');
+                    celdaSueldo.textContent = resultado.Sueldo;
+                    fila.appendChild(celdaSueldo);
+
+                    var celdaSaldoT = document.createElement('td');
+                    celdaSaldoT.textContent = resultado.SaldoTotal;
+                    fila.appendChild(celdaSaldoT);
+
+                    var celdaRtaVitImss = document.createElement('td');
+                    celdaRtaVitImss.textContent = resultado.RtaVitIMSS;
+                    fila.appendChild(celdaRtaVitImss);
+
+                    var celdaRtaVitRJP = document.createElement('td');
+                    celdaRtaVitRJP.textContent = resultado.RtaVitRJP;
+                    fila.appendChild(celdaRtaVitRJP);
+
+                    var celdaPension = document.createElement('td');
+                    celdaPension.textContent = resultado.Pension;
+                    fila.appendChild(celdaPension);
+
+                    var celdaPje = document.createElement('td');
+                    celdaPje.textContent = resultado.pjeTotal;
+                    fila.appendChild(celdaPje);
+
+                    tabla.appendChild(fila);
+
+                }
+            }
+
+            var tabla_dos = document.getElementById('resultados-imss');
+            for (var clave in resultados) {
+
+                if (resultados.hasOwnProperty(clave)) {
+
+                    var resultado = resultados[clave];
+                    var fila = document.createElement('tr');
+
+
+                    var celdaAnio = document.createElement('td');
+                    celdaAnio.textContent = resultado.Anio;
+                    fila.appendChild(celdaAnio);
+
+                    var celdaEdad = document.createElement('td');
+                    celdaEdad.textContent = resultado.Edad;
+                    fila.appendChild(celdaEdad);
+
+                    var celdaSueldo = document.createElement('td');
+                    celdaSueldo.textContent = resultado.Sueldo;
+                    fila.appendChild(celdaSueldo);
+
+                    var celdaSaldoImss = document.createElement('td');
+                    celdaSaldoImss.textContent = resultado.SaldoIMSS;
+                    fila.appendChild(celdaSaldoImss);
+
+                    var celdaRtaVitImss = document.createElement('td');
+                    celdaRtaVitImss.textContent = resultado.RtaVitIMSS;
+                    fila.appendChild(celdaRtaVitImss);
+
+                    var celdaPenGarImss = document.createElement('td');
+                    celdaPenGarImss.textContent = resultado.PenGarIMSS;
+                    fila.appendChild(celdaPenGarImss);
+
+                    var celdaPensionImss = document.createElement('td');
+                    celdaPensionImss.textContent = resultado.PensionIMSS;
+                    fila.appendChild(celdaPensionImss);
+
+                    var celdaPjeImss = document.createElement('td');
+                    celdaPjeImss.textContent = resultado.pjeIMSS;
+                    fila.appendChild(celdaPjeImss);
+
+
+
+
+                    tabla_dos.appendChild(fila);
+                }
+            }
+
+            var tabla_tres = document.getElementById('resultados-rjp');
+            for (var clave in resultados) {
+
+                if (resultados.hasOwnProperty(clave)) {
+                    var resultado = resultados[clave];
+                    var fila = document.createElement('tr');
+
+                    var celdaNombre = document.createElement('td');
+                    celdaNombre.textContent = resultado.Anio;
+                    fila.appendChild(celdaNombre);
+
+                    var celdaEdad = document.createElement('td');
+                    celdaEdad.textContent = resultado.Edad;
+                    fila.appendChild(celdaEdad);
+
+                    var celdaEdad = document.createElement('td');
+                    celdaEdad.textContent = resultado.Sueldo;
+                    fila.appendChild(celdaEdad);
+
+                    var celdaEmail = document.createElement('td');
+                    celdaEmail.textContent = resultado.SaldoRJP;
+                    fila.appendChild(celdaEmail);
+
+                    var celdaEdad = document.createElement('td');
+                    celdaEdad.textContent = resultado.RtaVitRJP;
+                    fila.appendChild(celdaEdad);
+
+                    var celdaEmail = document.createElement('td');
+                    celdaEmail.textContent = resultado.pjeRJP;
+                    fila.appendChild(celdaEmail);
+                    tabla_tres.appendChild(fila);
+                }
+            }
+
+        });
+
+
+        const botones = document.querySelectorAll(".boton-nav");
+
+        function pintarBotonSeleccionado(event) {
+            // Despintar todos los botones
+            botones.forEach(boton => {
+                boton.classList.remove("boton-pintado");
+            });
+
+            // Pintar el botón seleccionado
+            event.target.classList.add("boton-pintado");
+        }
+        // Asignar el evento click a cada botón
+        botones.forEach(boton => {
+            boton.addEventListener("click", pintarBotonSeleccionado);
+        });
+
+        // Pintar el primer botón por defecto
+        botones[0].classList.add("boton-pintado");
+
+
+
+        // Obtener el elemento span por su ID
+        var spanAnioActual = document.getElementById("anio-actual");
+
+        // Asignar el valor del año actual al contenido del span
+        spanAnioActual.textContent = obtenerAnioActual();
+
+
+        function imprimirPagina() {
+           printJS("resultados.pdf");
+        }
+    </script>
+    <script src="js/scriptsStyles.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/print-js/dist/print.min.js"></script>
+
+</body>
+
+</html>

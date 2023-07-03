@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ventana de carga</title>
+    <!-- tambien se moverian estos estilos a mi archivo de los resultados -->
+    <style>
+       .loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: table;
+  background: #0d1d12;
+  z-index: 9999;
+}
+.loader-inner {
+  width: 150px;
+  height: 150px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  z-index: 9999;
+
+  .spinner {
+    width: 100%;
+    height: 100%;
+     position: absolute;
+     top: 0;
+     left: 0%;
+     border: solid 1px #153122;
+     border-radius: 50%;
+  }
+
+  .blue, .white {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 10%;
+    left: 10%;  
+  }
+
+  .blue { 
+    background: #55a559;
+    animation: blueloader 1.4s infinite linear;
+  }
+  .white { 
+    background: #468a27e7;
+    animation: whiteloader 1.4s infinite linear;
+  }
+  .static {
+    z-index: 100;
+    transform: scale(1);
+  }
+  .active {
+    z-index: 200;
+    transform: scale(0.1);
+  }
+}
+
+/* // KEYFRAMES -------------------------------------------------------------*/
+@keyframes spin {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes blueloader {
+  0%{
+    z-index: 100;
+    transform: scale(1);
+  }
+  50%{
+    z-index: 100;
+    transform: scale(1);
+  }
+  51%{
+    z-index: 200;
+    transform: scale(0);
+  }
+  100%{
+    z-index: 200;
+    transform: scale(1);
+  }
+}
+
+@keyframes whiteloader {
+  0%{
+    z-index: 200;
+    transform: scale(0);
+  }
+  50%{
+    z-index: 200;
+    transform: scale(1);
+  }
+  51%{
+    z-index: 100;
+    transform: scale(1);
+  }
+  100%{
+    z-index: 100;
+    transform: scale(1);
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <div class="loader-inner">
+          
+          <div class="spinner"></div>
+          <div class="blue static"></div>
+          <div class="white active"></div>        
+        </div>
+      
+      </div>
+
+
+    <script>
+        // Mostrar la ventana de carga
+        function mostrarCarga() {
+            document.getElementById("loader").style.display = "block";
+        
+        }
+
+        // Ocultar la ventana de carga
+        function ocultarCarga() {
+            document.getElementById("loader").style.display = "none";
+
+        }
+        function mostrarResultados(){
+          window.open("../resultados.html", "_blank");
+        }
+        // Simulación de una llamada al servidor que toma 3 segundos
+        // function llamarServidor() {
+            mostrarCarga();
+           
+            setTimeout(function () {
+                //         
+                window.open("..\resultados.html", "_blank");
+                mostrarResultados();
+
+
+                ocultarCarga();
+            }, 3000);
+           
+        // }
+        // Llamar a la función al cargar la página
+        // llamarServidor();
+    
+    </script>
+</body>
+</html>
