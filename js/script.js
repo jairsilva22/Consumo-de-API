@@ -1,8 +1,4 @@
-// const { captureRejectionSymbol } = require("http-proxy");
 
-// const { json } = require("express");
-
-// const { json } = require("express");
 
 //funcion que se usa para habilitar la edad del conyuge  si es que el usuario esta casado
 function habilitarInput() {
@@ -38,7 +34,6 @@ function habilitarInputIMSS() {
     msg.style.display = "none";
     // estimarIMSS=1;
   }
-
 }
 
 var estimarRJP = 0;
@@ -63,15 +58,8 @@ function habilitarInputRJP() {
 
 }
 
-
-
-
-
 //funcion en la ventana de resultados que me divide en 3 botones 
-
 function mostrarResultado(divId) {
-
-
 
   // Oculta todos los resultados
   var resultados = document.getElementsByClassName('resultado');
@@ -145,11 +133,8 @@ document.getElementById('myForm').addEventListener('submit', function (event) {
   console.log(data);
 
   // aqui se cambia esta url  por la url que tengan en donde este montada la app
-
-
-  const url = 'http://192.168.1.235:8574/sntssrv.dll/api/rest/tsm/calcula_RentaVitalicia';
-
-
+  // const url = 'http://192.168.1.235:8574/sntssrv.dll/api/rest/tsm/calcula_RentaVitalicia';
+ const url = "http://vansac.sytes.net:8574/sntssrv.dll/api/rest/tsm/calcula_RentaVitalicia';"
   axios.post(url, data)
     .then(function (response) {
 
@@ -158,10 +143,7 @@ document.getElementById('myForm').addEventListener('submit', function (event) {
       var jsonResultados = JSON.stringify(results);
 
       var msg = JSON.parse(jsonResultados);
-      // alert(msg);
-      // alert(msg.Mensaje);
-      // alert(msg.Mensaje);
-
+   
       if (msg.Mensaje == "OK") {
         setTimeout(function () {
           var windowSize = "width=" + window.innerWidth + ",height=" + window.innerHeight + ",scrollbars=no";
@@ -200,10 +182,7 @@ document.getElementById('myForm').addEventListener('submit', function (event) {
         });
         // alert("Error en los datos ingresados favor de revisar." + msg.Mensaje);
       }
-
-
     })
-
     .catch(function (error) {
 
       console.log(error);
