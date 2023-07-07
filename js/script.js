@@ -133,8 +133,16 @@ document.getElementById('myForm').addEventListener('submit', function (event) {
   console.log(data);
 
   // aqui se cambia esta url  por la url que tengan en donde este montada la app
-  // const url = 'http://192.168.1.235:8574/sntssrv.dll/api/rest/tsm/calcula_RentaVitalicia';
- const url = "http://vansac.sytes.net:8574/sntssrv.dll/api/rest/tsm/calcula_RentaVitalicia';"
+  // const url = 'https://192.168.1.235:8574/sntssrv.dll/api/rest/tsm/calcula_RentaVitalicia';
+    const url = "https://vansac.sytes.net:8574/SNTSSRV.DLL/api/rest/tsm/calcula_RentaVitalicia';"
+  //  const httpsAgent = new https.Agent({
+  //   rejectUnauthorized: false
+  // });
+
+  // const axiosInstance = axios.create({
+  //   httpsAgent
+  // });
+  
   axios.post(url, data)
     .then(function (response) {
 
@@ -151,15 +159,16 @@ document.getElementById('myForm').addEventListener('submit', function (event) {
           newTab.onload = function () {
             // Envía los resultados a la nueva pestaña
             newTab.postMessage(results, '*');
+
+            console.log(results);
           };
         }, 1500);
-
       } else {
 
         var alert = document.getElementById("alert-padre");
         var mensaje_alerta =document.getElementById("Mensaje-alerta");
         var Mensaje = msg.Mensaje;
-        
+
         alert.innerHTML = `<div class="mb-3 inline-flex w-3/4 mx-auto items-center rounded-2xl rounded-lg bg-red-100 px-6 py-5 italic text-3xl text-red-700 border-3 border-red-700"
 
           role="alert" style="justify-content: center;">
@@ -185,8 +194,8 @@ document.getElementById('myForm').addEventListener('submit', function (event) {
     })
     .catch(function (error) {
 
-      console.log(error);
-      // console.error('Error:', error);
+      // alert("Problemas con en el servidor "+ error);
+      console.error('Error:', error);
     });
 
 });

@@ -7,7 +7,7 @@ const proxy = httpProxy.createProxyServer();
 // Configura el servidor proxy para redirigir las solicitudes entrantes
 const server = http.createServer((req, res) => {
   // Redirige la solicitud a la URL de destino
-  proxy.web(req, res, { target: 'http://192.168.1.235:8574/sntssrv.dll/api/rest/tsm/calcula_RentaVitalicia' });
+  proxy.web(req, res, { target: 'https://vansac.sytes.net:8574/sntssrv.dll/api/rest/tsm/calcula_RentaVitalicia' });
 });
 
 // Maneja los errores del servidor proxy
@@ -22,10 +22,11 @@ proxy.on('error', (err, req, res) => {
 
 // Inicia el servidor proxy en el puerto deseado
 
-
 const puerto =5500;
-    server.listen(puerto, () => {
-    console.log(`Servidor proxy en ejecución en el puerto ${puerto}`);
+
+server.listen(puerto, () => {
+console.log(`Servidor proxy en ejecución en el puerto ${puerto}`);
+
 });
 
 
